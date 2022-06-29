@@ -1,4 +1,15 @@
 const { startServer } = require('./src/server');
-const { handler } = require('./src/handler');
+const { handlers } = require('./src/handler');
 
-startServer(9999, handler('./src/product.json'));
+const createHandlers = (handlers) => {
+  return (request, response) => {
+    for (const handler of handlers) {
+      if (handler(request, response)) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+startServer(9999, createHandlers(handlers));

@@ -8,13 +8,13 @@ class Cart {
     this.#itemsAdded = {};
   }
 
-  add({ queryParams }, products) {
-    const productsAdded = Object.keys(queryParams);
-    productsAdded.forEach((product) => {
+  add({ url, products }) {
+    const productsAdded = url.searchParams.keys();
+    for (const product of productsAdded) {
       if (products[product]) {
         this.#itemsAdded[product] = products[product];
       }
-    });
+    }
   }
 
   getAddedItems() {
@@ -38,13 +38,13 @@ class Cart {
   }
 }
 
-const showCart = ({ path }, response, cart) => {
-  const template = fs.readFileSync('public' + path, 'utf8');
+const showCart = ({ url, cart }, response) => {
+  const template = fs.readFileSync('public' + url.pathname, 'utf8');
   const products = cart.getAddedItems();
   const totalPrice = cart.getTotalPrice();
   let cartItems = template.replace('PRODUCTS', products);
   cartItems = cartItems.replace('TOTAL', totalPrice);
-  response.send(cartItems);
+  response.end(cartItems);
   return true;
 };
 

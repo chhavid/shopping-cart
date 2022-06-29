@@ -12,33 +12,32 @@ const determineContentType = (fileName) => {
   return contentType[extension] || 'text/plain';
 };
 
-const cartHandler = (request, response, cart, products) => {
-  cart.add(request, products);
+const cartHandler = (request, response) => {
+  request.cart.add(request);
   response.statusCode = 302;
   response.setHeader('location', '/cart.html');
-  response.send('');
+  response.end('');
   return true;
 };
 
-const handler = (fileName) => {
-
+const handler = () => {
   return (request, response, serveFrom = './public') => {
-    if (request.path === '/addToCart') {
-      return cartHandler(request, response, cart, products);
+    if (request.url.pathname === '/addToCart') {
+      return cartHandler(request, response);
     }
 
-    if (request.path === '/cart.html') {
-      return showCart(request, response, cart);
+    if (request.url.pathname === '/cart.html') {
+      return showCart(request, response);
     }
 
-    const fileName = serveFrom + request.path;
+    const fileName = serveFrom + request.url.pathname;
     if (!fs.existsSync(fileName)) {
       return false;
     }
 
     response.setHeader('content-type', determineContentType(fileName));
     const content = fs.readFileSync(fileName);
-    response.send(content);
+    response.end(content);
     return true;
   };
 };
@@ -52,6 +51,7 @@ const addRequest = (fileName) => {
   }
 };
 
-const handlers = [addRequest(fileName), handler];
+const handlers = [addRequest('src/product.json'), handler()];
+// const handlers = [handler];
 
-module.exports = { handler };
+module.exports = { handlers };
