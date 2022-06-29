@@ -51,7 +51,4 @@ const addRequest = (fileName) => {
   }
 };
 
-const handlers = [addRequest('src/product.json'), handler()];
-// const handlers = [handler];
-
-module.exports = { handlers };
+module.exports = { handler, addRequest };
