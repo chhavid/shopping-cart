@@ -1,0 +1,42 @@
+{
+  "blueTop": {
+    "name": "Blue Top",
+    "price": 300,
+    "image": "image/blueTop.jpg"
+  },
+  "saree": {
+    "name": "Saree",
+    "price": 1000,
+    "image": "image/saree.jpg"
+  },
+  "jeans": {
+    "name": "Jeans",
+    "price": 800,
+    "image": "image/jeans.jpg"
+  },
+  "redTop": {
+    "name": "Red Top",
+    "price": 400,
+    "image": "image/redTop.jpg"
+  },
+  "sandals": {
+    "name": "Sandals",
+    "price": 600,
+    "image": "image/sandals.jpg"
+  },
+  "heels": {
+    "name": "Heels",
+    "price": 1000,
+    "image": "image/heels.jpg"
+  },
+  "sportsShoes": {
+    "name": "Sports Shoes",
+    "price": 1400,
+    "image": "image/sportsShoes.jpg"
+  },
+  "canvasShoes": {
+    "name": "Canvas Shoes",
+    "price": 1200,
+    "image": "image/canvasShoes.jpg"
+  }
+}
