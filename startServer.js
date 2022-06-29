@@ -1,6 +1,7 @@
 const { startServer } = require('./src/server');
-const { handler, addRequest } = require('./src/handler');
+const { cartHandler } = require('./src/handler');
 const { notFound } = require('./src/notFound');
+const { serveFile } = require('./src/serveFile');
 
 
 const createHandlers = (handlers) => {
@@ -14,5 +15,5 @@ const createHandlers = (handlers) => {
   }
 };
 
-const handlers = [addRequest('src/product.json'), handler(), notFound];
+const handlers = [cartHandler('src/product.json'), serveFile, notFound];
 startServer(9999, createHandlers(handlers));
