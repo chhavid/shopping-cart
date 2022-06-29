@@ -1,7 +1,7 @@
-const { startServer } = require('./src/server');
-const { cartHandler } = require('./src/handler');
-const { notFound } = require('./src/notFound');
-const { serveFile } = require('./src/serveFile');
+const { startServer } = require('./src/server/server');
+const { cartHandler } = require('./src/app/handler');
+const { notFound } = require('./src/app/notFound');
+const { serveFile } = require('./src/app/serveFile');
 
 
 const createHandlers = (handlers) => {
